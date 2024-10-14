@@ -1,6 +1,8 @@
 ﻿
+using System.Data;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 internal class Program
 {
@@ -8,15 +10,16 @@ internal class Program
 {
 {"Rock", "Scissors"}, {"Paper", "Rock"}, {"Scissors", "Paper"}
 };
-  static int PlayerWins = 0;
-  static int ComputerWins = 0;
+  static int playerWins = 0;
+  static int computerWins = 0;
   private static void Main()
   {
+    LoadGame();
     Console.ResetColor();
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine("Ready Set.... Rock Paper Scissors!!!");
-    Console.WriteLine($"Score | Player Wins {PlayerWins} | Computer Wins {ComputerWins}");
+    Console.WriteLine($"Score | Player Wins {playerWins} | Computer Wins {computerWins}");
     Console.ResetColor();
     string UserHand = ChooseHand();
     string ComputerHand = GetComputerHand();
@@ -35,16 +38,18 @@ internal class Program
     {
       Console.ForegroundColor = ConsoleColor.Yellow;
       Console.WriteLine("Congrats!!!! You Win");
-      PlayerWins++;
+      playerWins++;
       Console.ResetColor();
+      SaveGame();
       PlayAgain();
     }
     if (WinCondition[ComputerHand] == UserHand)
     {
       Console.ForegroundColor = ConsoleColor.Red;
       Console.WriteLine("OH NO YOU LOST THERE IS NO HOPE FOR HUMANITY NOW");
-      ComputerWins++;
+      computerWins++;
       Console.ResetColor();
+      SaveGame();
       PlayAgain();
     }
   }
@@ -86,7 +91,7 @@ internal class Program
       Console.WriteLine("Incorrect Key choose either 1, 2 or 3 ");
       Console.ResetColor();
       Thread.Sleep(1000);
-      ChooseHand();
+      return ChooseHand();
     }
     return ChosenHand;
   }
@@ -111,6 +116,22 @@ internal class Program
     if (userInput == 'y')
     {
       Main();
+    }
+  }
+  static void SaveGame()
+  {
+    SaveData save = new(playerWins, computerWins);
+    string saveData = JsonSerializer.Serialize(save);
+    File.WriteAllText("saveGame.json", saveData);
+  }
+  static void LoadGame()
+  {
+    string jsonString = File.ReadAllText("saveGame.json");
+    SaveData data = JsonSerializer.Deserialize<SaveData>(jsonString);
+    if (data != null)
+    {
+      playerWins = data.PlayerWins;
+      computerWins = data.ComputerWins;
     }
   }
 }
