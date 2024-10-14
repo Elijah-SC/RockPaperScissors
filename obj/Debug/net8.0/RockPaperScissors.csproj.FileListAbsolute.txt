@@ -12,3 +12,4 @@ C:\Users\elija\source\fall24\c#_Apps\RockPaperScissors\obj\Debug\net8.0\refint\R
 C:\Users\elija\source\fall24\c#_Apps\RockPaperScissors\obj\Debug\net8.0\RockPaperScissors.pdb
 C:\Users\elija\source\fall24\c#_Apps\RockPaperScissors\obj\Debug\net8.0\RockPaperScissors.genruntimeconfig.cache
 C:\Users\elija\source\fall24\c#_Apps\RockPaperScissors\obj\Debug\net8.0\ref\RockPaperScissors.dll
+C:\Users\elija\source\fall24\c#_Apps\RockPaperScissors\obj\Debug\net8.0\RockPaperScissors.sourcelink.json

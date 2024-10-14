@@ -16,6 +16,7 @@ internal class Program
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine("Ready Set.... Rock Paper Scissors!!!");
+    Console.WriteLine($"Score | Player Wins {PlayerWins} | Computer Wins {ComputerWins}");
     Console.ResetColor();
     string UserHand = ChooseHand();
     string ComputerHand = GetComputerHand();
@@ -34,6 +35,7 @@ internal class Program
     {
       Console.ForegroundColor = ConsoleColor.Yellow;
       Console.WriteLine("Congrats!!!! You Win");
+      PlayerWins++;
       Console.ResetColor();
       PlayAgain();
     }
@@ -41,6 +43,7 @@ internal class Program
     {
       Console.ForegroundColor = ConsoleColor.Red;
       Console.WriteLine("OH NO YOU LOST THERE IS NO HOPE FOR HUMANITY NOW");
+      ComputerWins++;
       Console.ResetColor();
       PlayAgain();
     }
