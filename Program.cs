@@ -8,6 +8,8 @@ internal class Program
 {
 {"Rock", "Scissors"}, {"Paper", "Rock"}, {"Scissors", "Paper"}
 };
+  static int PlayerWins = 0;
+  static int ComputerWins = 0;
   private static void Main()
   {
     Console.ResetColor();
